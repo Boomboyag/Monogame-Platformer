@@ -1,0 +1,3 @@
+Source File,Dest File,Processor Type,Content Type,Source File Size,Dest File Size,Build Seconds
+"C:/Users/gavyn/MonoGame/Platformer/Platformer/Content/Platform.png","C:/Users/gavyn/MonoGame/Platformer/Platformer/Content/bin/DesktopGL/Content/Platform.xnb","TextureProcessor","Texture2DContent",120,1109,0.0855256
+"C:/Users/gavyn/MonoGame/Platformer/Platformer/Content/PlayerSheet.png","C:/Users/gavyn/MonoGame/Platformer/Platformer/Content/bin/DesktopGL/Content/PlayerSheet.xnb","TextureProcessor","Texture2DContent",2361,57429,0.0733609
