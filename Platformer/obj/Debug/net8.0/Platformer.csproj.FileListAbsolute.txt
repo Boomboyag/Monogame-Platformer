@@ -25,3 +25,4 @@ C:\Users\gavyn\MonoGame\Platformer\Platformer\obj\Debug\net8.0\Platformer.genrun
 C:\Users\gavyn\MonoGame\Platformer\Platformer\obj\Debug\net8.0\ref\Platformer.dll
 C:\Users\gavyn\MonoGame\Platformer\Platformer\bin\Debug\net8.0\Content\PlayerSheet.xnb
 C:\Users\gavyn\MonoGame\Platformer\Platformer\bin\Debug\net8.0\Content\Platform.xnb
+C:\Users\gavyn\MonoGame\Platformer\Platformer\obj\Debug\net8.0\Platformer.sourcelink.json

@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using System.Collections.Generic;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
@@ -8,6 +9,26 @@ public class Game1 : Game
 {
     public static GraphicsDeviceManager _graphics;
     private SpriteBatch _spriteBatch;
+
+    // The environment
+    Environment environment = new Environment(new List<List<int>>(){
+        new List<int>(){0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+        new List<int>(){0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+        new List<int>(){0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+        new List<int>(){0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+        new List<int>(){0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+        new List<int>(){0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+        new List<int>(){0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+        new List<int>(){0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+        new List<int>(){0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0},
+        new List<int>(){0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0},
+        new List<int>(){0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0},
+        new List<int>(){1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 1, 1, 1, 1, 1},
+        new List<int>(){1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 1, 1, 1, 1, 1},
+        new List<int>(){1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 1, 1, 1, 1, 1},
+        new List<int>(){1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 1, 1, 1, 1, 1},
+        new List<int>(){1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
+    });
 
     // The player
     Player player;
@@ -19,12 +40,17 @@ public class Game1 : Game
         IsMouseVisible = true;
 
         // Create the player
-        player = new Player(new Vector2(100, 100));
+        player = new Player(this, new Vector2(100, 100));
     }
 
     protected override void Initialize()
     {
-        // TODO: Add your initialization logic here
+        _graphics.PreferredBackBufferWidth = 512;
+        _graphics.PreferredBackBufferHeight = 512;
+        _graphics.ApplyChanges();
+
+        // Initialize the environment
+        environment.Initialize();
 
         base.Initialize();
     }
@@ -32,6 +58,9 @@ public class Game1 : Game
     protected override void LoadContent()
     {
         _spriteBatch = new SpriteBatch(GraphicsDevice);
+
+        // Load the environment content
+        environment.LoadContent(Content);
 
         // Load the player content
         player.LoadContent(Content);
@@ -55,6 +84,9 @@ public class Game1 : Game
         // Start the sprite batch
         _spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise);
 
+        // Draw the environment
+        environment.Draw(_spriteBatch);
+
         // Draw the player
         player.Draw(_spriteBatch);
 
@@ -62,5 +94,9 @@ public class Game1 : Game
         _spriteBatch.End();
 
         base.Draw(gameTime);
+    }
+
+    public List<Rectangle> GetEnviornmentCollision(){
+        return environment.GetColliders();
     }
 }
